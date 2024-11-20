@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.ChatMapper">
+	<insert id="insertChat" parameterType="com.model.Chat"
+		keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO chat (name, subject,
+		content) VALUES (#{name}, #{subject}, #{content})
+	</insert>
+
+	<select id="selectAllChat" resultType="Chat">
+		SELECT * FROM chat;
+	</select>
+
+	<select id="selectChatById" parameterType="Integer"
+		resultType="com.model.Chat">
+		SELECT * FROM chat WHERE id = #{id}
+	</select>
+
+	<select id="selectChatByIdRange" resultType="com.model.Chat">
+		SELECT * FROM chat
+		WHERE id BETWEEN #{start} AND #{end}
+	</select>
+
+	<update id="updateChat" parameterType="com.model.Chat">
+		UPDATE chat SET name =
+		#{name}, subject = #{subject}, content = #{content} WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteChat" parameterType="Integer">
+		DELETE FROM chat WHERE id = #{id}
+	</delete>
+</mapper>
+    
